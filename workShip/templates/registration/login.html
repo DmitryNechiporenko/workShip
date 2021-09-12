@@ -1,0 +1,39 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+  <p>Логин или пароль введены неверно</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Ваш аккаунт не имеет доступ к этой странице.</p>
+  {% else %}
+    <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
+  {% endif %}
+{% endif %}
+<div class="login-form">
+  <form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+    <div class="login-input">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+    </div>
+    <div class="login-input">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+    </div>
+  <input type="submit" value="Войти" />
+  <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+  <p><a href="{% url 'register' %}">Регистрация</a></p>
+</div>
+{% endblock %}

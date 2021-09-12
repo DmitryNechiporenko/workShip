@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Обучение
+{% endblock %}
+
+{% block content %}
+<main>
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>Обучение</h2>
+          </div>
+            <div class="vacancies__container">
+            {% if practices %}
+              {% for practice in practices %}
+             <a href="{% url 'practice_detail' %}?id={{ practice.id }}">
+                <div class="vacancy">
+                  <div class="vacancy__title">{{ practice.title }}</div>
+                  <div class="vacancy__salary">{{ practice.salary }}</div>
+                  <div class="vacancy__date">{{ practice.date_start }} - {{ practice.date_end }}</div>
+                  <div class="vacancy__logo"><img src="{{practice.image.url}}" alt=""></div>
+                </div>
+             </a>
+              {% endfor %}
+            {% else %}
+              <p>Практик не обнаружено</p>
+            {% endif %}
+          </div>
+            {% if practices %}
+            <nav class="vacancies__pages">
+                <ul>
+                    <li><a href="#">1</a></li>
+                 </ul>
+             </nav>
+             {% endif %}
+        </div>
+
+      </div>
+    </main>
+
+{% endblock %}

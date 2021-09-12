@@ -1,0 +1,59 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Практика
+{% endblock %}
+
+{% block content %}
+<main>
+
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>{{ practice.title }}</h2>
+          </div>
+
+          <div class="vacancy__detail">
+            <div class="vacancy__text">
+              <div class="vacancy__date">От {{ practice.date_start }} до {{ practice.date_end }}</div>
+            <div><h3>Компания: </h3> {{ practice.company }}</div>
+            <div><h3>Зарплата: </h3> {{ practice.salary }}</div>
+
+            <div class="vacancy__description">
+              <h3>Описание:</h3>
+              <p>
+                 {{ practice.description }}
+              </p>
+            </div>
+            </div>
+
+             <div class="vacancy__logo">
+               <img src="{{practice.image.url}}" alt="">
+             </div>
+          </div>
+          <div class="respond-button">
+            <button>Откликнуться</button>
+          </div>
+
+        </div>
+        <div class="slider_index">
+          <div class="slider_index__left"></div>
+          <div class="slider_index__container">
+            <div class="slider_index__element">
+              <p>
+                Только у нас вы сможете найти работу и при этом получить
+                дополнительные сертификаты для более крупных организаций.
+                Изучение Английского языка уже доступно на нашей платформе
+              </p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+            <div class="slider_index__element">
+              <p>С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+          </div>
+          <div class="slider_index__right"></div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

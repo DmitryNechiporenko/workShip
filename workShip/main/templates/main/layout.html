@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%  static 'main/style/css/style.css' %}">
+    <title>{% block title %}
+    {% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <nav class="top_menu">
+        <ul>
+          <li><a href="{% url 'home' %}" class="top_title"> <b>WORK</b>SHIP </a>
+          </li>
+          <li><a href="{% url 'services_home' %}">Услуги</a>
+            <ul>
+              <li><a href="{% url 'vacancies_home' %}">Вакансии</a></li>
+              <li><a href="{% url 'summaries_home' %}">Резюме</a></li>
+              <li><a href="{% url 'in_develop' %}">Английский для моряков</a></li>
+              <li><a href="{% url 'in_develop' %}">Рассылка CV</a></li>
+              <li><a href="{% url 'in_develop' %}">Морские документы</a></li>
+              <li><a href="{% url 'in_develop' %}">Дельта тест</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'company_home' %}">Для компании</a></li>
+          <li><a href="{% url 'seaman_home' %}">Консультация по морским документам</a></li>
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
+              <li><a href="{% url 'admin:index' %}">{{ request.user.get_full_name}}</a></li>
+            {% else %}
+              <li><a href="#">{{ request.user.get_full_name}}</a></li>
+            {% endif %}
+            <li><a href="{% url 'logout' %}">Выйти</a></li>
+          {% else %}
+
+            <li><a href="{% url 'login' %}">Авторизация</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <footer></footer>
+  </body>
+</html>

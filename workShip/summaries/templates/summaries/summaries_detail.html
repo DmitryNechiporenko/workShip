@@ -1,0 +1,56 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Резюме
+{% endblock %}
+
+{% block content %}
+<main>
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>{{summary.name}}</h2>
+          </div>
+          <div class="vacancy__detail">
+            <div class="vacancy__text">
+             <div><h3>Город: </h3> {{ summary.city }}</div>
+            <div><h3>Должность: </h3> {{ summary.job }}</div>
+            <div><h3>Зарплата: </h3>От {{ summary.salary_min }} до {{ summary.salary_max }}</div>
+
+            <div class="vacancy__description">
+              <h3>Описание:</h3>
+              <p>
+                 {{ summary.extra }}
+              </p>
+            </div>
+            </div>
+
+             <div class="vacancy__logo">
+               <img src="{{summary.image.url}}" alt="">
+             </div>
+          </div>
+          <div class="respond-button">
+            <button>Откликнуться</button>
+          </div>
+        </div>
+        <div class="slider_index">
+          <div class="slider_index__left"></div>
+          <div class="slider_index__container">
+            <div class="slider_index__element">
+              <p>
+                Только у нас вы сможете найти работу и при этом получить
+                дополнительные сертификаты для более крупных организаций.
+                Изучение Английского языка уже доступно на нашей платформе
+              </p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+            <div class="slider_index__element">
+              <p>С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+          </div>
+          <div class="slider_index__right"></div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

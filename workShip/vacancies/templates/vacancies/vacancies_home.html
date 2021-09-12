@@ -1,0 +1,60 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Вакансии
+{% endblock %}
+
+{% block content %}
+<main>
+
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>Вакансии</h2>
+          </div>
+          <div class="vacancies__container">
+            {% if vacancies %}
+              {% for vacancy in vacancies %}
+             <a href="{% url 'vacancies_detail' %}?id={{ vacancy.id }}">
+                <div class="vacancy">
+                  <div class="vacancy__title">{{ vacancy.title }}</div>
+                  <div class="vacancy__salary">{{ vacancy.salary }}</div>
+                  <div class="vacancy__date">Дата посадки {{ vacancy.date_start }}</div>
+                  <div class="vacancy__logo"><img src="{{vacancy.image.url}}" alt=""></div>
+                </div>
+             </a>
+              {% endfor %}
+            {% else %}
+              <p>Вакансий не обнаружено</p>
+            {% endif %}
+          </div>
+          <nav class="vacancies__pages">
+            <ul>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="slider_index">
+          <div class="slider_index__left"></div>
+          <div class="slider_index__container">
+            <div class="slider_index__element">
+              <p>
+                Только у нас вы сможете найти работу и при этом получить
+                дополнительные сертификаты для более крупных организаций.
+                Изучение Английского языка уже доступно на нашей платформе
+              </p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+            <div class="slider_index__element">
+              <p>С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+          </div>
+          <div class="slider_index__right"></div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

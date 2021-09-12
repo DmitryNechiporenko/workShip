@@ -1,0 +1,56 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Вакансия
+{% endblock %}
+
+{% block content %}
+<main>
+
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>{{ vacancy.title }}</h2>
+          </div>
+
+          <div class="vacancy__detail">
+            <div class="vacancy__text">
+            <div><h3>Компания: </h3> {{ vacancy.company }}</div>
+            <div><h3>Зарплата: </h3> {{ vacancy.salary }}</div>
+            <div><h3>Тип судна: </h3> {{ vacancy.vessel_type }}</div>
+            <div><h3>Дата посадки: </h3> {{ vacancy.date_start }}</div>
+            <div><h3>Место посадки: </h3> {{ vacancy.landing }}</div>
+            <div><h3>Срок контракта: </h3> {{ vacancy.contract_term }}</div>
+
+            </div>
+
+             <div class="vacancy__logo">
+               <img src="{{vacancy.image.url}}" alt="">
+             </div>
+          </div>
+          <div class="respond-button">
+            <button>Откликнуться</button>
+          </div>
+
+        </div>
+        <div class="slider_index">
+          <div class="slider_index__left"></div>
+          <div class="slider_index__container">
+            <div class="slider_index__element">
+              <p>
+                Только у нас вы сможете найти работу и при этом получить
+                дополнительные сертификаты для более крупных организаций.
+                Изучение Английского языка уже доступно на нашей платформе
+              </p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+            <div class="slider_index__element">
+              <p>С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</p>
+              <img src="https://via.placeholder.com/815x540" alt="" />
+            </div>
+          </div>
+          <div class="slider_index__right"></div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}
