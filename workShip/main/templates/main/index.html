@@ -18,7 +18,7 @@
           {% if vacancies %}
            <div class="vacancies__container">
               {% for vacancy in vacancies %}
-               <a href="{% url 'vacancies_detail' %}?id={{ vacancy.id }}">
+               <a href="{{ vacancy.get_absolute_url }}">
                 <div class="vacancy">
                   <div class="vacancy__title">{{ vacancy.title }}</div>
                   <div class="vacancy__salary">{{ vacancy.salary }}</div>

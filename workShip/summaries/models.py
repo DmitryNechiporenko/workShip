@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+from django.urls import reverse
 
 image_storage = FileSystemStorage(
     # Physical file location ROOT
@@ -24,6 +25,9 @@ class Summary(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.job
+
+    def get_absolute_url(self):
+        return reverse('summaries_detail', kwargs={'summary_id': self.pk})
 
     class Meta:
         verbose_name = 'Резюме'

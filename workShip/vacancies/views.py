@@ -7,10 +7,9 @@ def vacancies_home(request):
     return render(request, 'vacancies/vacancies_home.html', {'vacancies': vacancies})
 
 
-def vacancies_detail(request):
-    id = request.GET.get('id', '')
+def vacancies_detail(request, vacancy_id):
     try:
-        vacancy = Vacancy.objects.get(pk=id)
+        vacancy = Vacancy.objects.get(pk=vacancy_id)
     except Vacancy.DoesNotExist:
         vacancy = None
 

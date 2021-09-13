@@ -13,7 +13,7 @@
           <div class="vacancies__container">
             {% if summaries %}
               {% for summary in summaries %}
-              <a href="{% url 'summaries_detail' %}?id={{ summary.id }}">
+              <a href="{{ summary.get_absolute_url }}">
                   <div class="vacancy">
                     <div class="vacancy__title">{{ summary.name }}</div>
                     <div class="vacancy__salary">от {{ summary.salary_min }} до {{ summary.salary_max }}</div>
