@@ -335,12 +335,19 @@ body {
   text-align: center;
 }
 
+.registration__text p {
+  display: block;
+  margin: 10px;
+}
+
 .registration__text button {
   position: absolute;
   padding: 10px;
   bottom: 10px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .registration__fields {
@@ -356,7 +363,7 @@ body {
 .registration__fields .registration__field input {
   display: block;
   width: 100%;
-  padding: 5px;
+  padding: 7px;
   -webkit-border-radius: 5px;
           border-radius: 5px;
   border-width: 1px;
