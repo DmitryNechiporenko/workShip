@@ -6,10 +6,43 @@
 
 {% block content %}
 <main>
-123
       <div class="wrapper">
-
+        <div class="registration">
+            <div class="registration__inner">
+                <div class="registration__text">
+                    <h1>
+                        Регистрация
+                    </h1>
+                    <p>
+                        Бла бла бла
+                    </p>
+                    <button>Зарегистрироваться</button>
+                </div>
+                <div class="registration__fields">
+                    <div class="registration__field">
+                        <label for="login"><b>Логин</b></label>
+                        <input type="text" placeholder="Логин" name="login" id="login" required>
+                    </div>
+                    <div class="registration__field">
+                        <label for="password"><b>Пароль</b></label>
+                        <input type="password" placeholder="Пароль" name="password" id="password" required>
+                    </div>
+                    <div class="registration__field">
+                        <label for="surname"><b>Фамилия</b></label>
+                        <input type="text" placeholder="Фамилия" name="surname" id="surname" required>
+                    </div>
+                    <div class="registration__field">
+                        <label for="name"><b>Имя</b></label>
+                        <input type="text" placeholder="Имя" name="name" id="name" required>
+                    </div>
+                    <div class="registration__field">
+                        <label for="patronymic"><b>Отчество</b></label>
+                        <input type="text" placeholder="Отчество" name="patronymic" id="patronymic" required>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
-    </main>
+</main>
 
 {% endblock %}

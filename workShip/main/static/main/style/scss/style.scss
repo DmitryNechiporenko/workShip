@@ -250,6 +250,57 @@ body {
   }
 }
 
+//REGISTRATION
+.registration {
+  display: block;
+  width: 1000px;
+  background: #fff;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 4px;
+
+  &__inner {
+    display: flex;
+  }
+
+
+  &__text {
+    width: 40%;
+    position: relative;
+    h1 {
+      text-align: center;
+    }
+
+    button {
+      position: absolute;
+      padding: 10px;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &__fields {
+    width: 60%;
+
+    .registration__field {
+      display: block;
+      margin: 10px auto;
+      width: 200px;
+
+      input {
+        display: block;
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border-width: 1px;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+
 // DOCUMENTS
 .documents__container {
   display: flex;
