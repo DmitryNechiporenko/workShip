@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Vacancy
 
 
@@ -8,9 +8,10 @@ def vacancies_home(request):
 
 
 def vacancies_detail(request, vacancy_id):
-    try:
-        vacancy = Vacancy.objects.get(pk=vacancy_id)
-    except Vacancy.DoesNotExist:
-        vacancy = None
+    vacancy = get_object_or_404(Vacancy, pk=vacancy_id)
 
-    return render(request, 'vacancies/vacancies_detail.html', {'vacancy': vacancy})
+    context = {
+        'vacancy': vacancy
+    }
+
+    return render(request, 'vacancies/vacancies_detail.html', context=context)
