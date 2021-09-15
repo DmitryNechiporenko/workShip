@@ -19,7 +19,7 @@
                   <div class="vacancy__title">{{ vacancy.title }}</div>
                   <div class="vacancy__salary">{{ vacancy.salary }}</div>
                   <div class="vacancy__date">Дата посадки {{ vacancy.date_start }}</div>
-                  <div class="vacancy__logo"><img src="{{vacancy.image.url}}" alt=""></div>
+                  <div class="vacancy__logo"><img class="rounded img-fluid" src="{{vacancy.image.url}}" alt=""></div>
                 </div>
              </a>
               {% endfor %}
@@ -27,14 +27,27 @@
               <p>Вакансий не обнаружено</p>
             {% endif %}
           </div>
+          {% if page_obj.has_other_pages %}
           <nav class="vacancies__pages">
             <ul>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
+              {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}" >&lt;</a></li>
+              {% endif %}
+
+              {% for p in paginator.page_range %}
+                {% if page_obj.number == p %}
+                  <li>{{ p }}</li>
+                {% elif p >= page_obj.number|add:-3 and p <= page_obj.number|add:3 %}
+                  <li><a href="?page={{ p }}" >{{ p }}</a></li>
+                {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}" >&gt;</a></li>
+              {% endif %}
             </ul>
           </nav>
+          {% endif %}
         </div>
         <div class="slider_index">
           <div class="slider_index__left"></div>

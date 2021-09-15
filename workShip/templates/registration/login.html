@@ -1,39 +1,40 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-Авторизация
+{{title}}
 {% endblock %}
 
 {% block content %}
+<div class="container text-center">
+    <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
 
-{% if form.errors %}
-  <p>Логин или пароль введены неверно</p>
-{% endif %}
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Ваш аккаунт не имеет доступ к этой странице.</p>
-  {% else %}
-    <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
-  {% endif %}
-{% endif %}
-<div class="login-form">
-  <form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-    <div class="login-input">
-      {{ form.username.label_tag }}
-      {{ form.username }}
+        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+
+        <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+         {% for f in form %}
+          <div class="form-floating mb-3">
+              {{ f }}
+              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+          </div>
+          {{ f.errors }}
+          {% endfor %}
+        <button type="submit" class= "w-100 btn btn-mg btn-primary">Войти</button>
+
+        </form>
+
+          <div class="mb-3 mt-3">
+              <a class="link-primary" href="{% url 'password_reset' %}">Забыли пароль?</a>
+          </div>
+
+        <div class="mb-3">
+            <a class="link-primary" href="{% url 'register' %}">Регистрация</a>
+        </div>
+
     </div>
-    <div class="login-input">
-      {{ form.password.label_tag }}
-      {{ form.password }}
-    </div>
-  <input type="submit" value="Войти" />
-  <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
-  <p><a href="{% url 'register' %}">Регистрация</a></p>
 </div>
 {% endblock %}

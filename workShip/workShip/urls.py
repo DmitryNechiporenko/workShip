@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('vacancies/', include('vacancies.urls')),
     path('summaries/', include('summaries.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    #path('accounts/', include('django.contrib.auth.urls')),
     path('seaman/', include('seaman.urls')),
     path('services/', include('services.urls')),
     path('education/', include('education.urls')),

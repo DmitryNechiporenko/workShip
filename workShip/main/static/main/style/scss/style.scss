@@ -198,6 +198,13 @@ body {
         margin: 10px;
         width: 40px;
         height: 40px;
+        background-color: #e2e2e2;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        color: #000;
+        font-weight: bold;
+        border-radius: 4px;
 
         a {
           display: block;
@@ -263,7 +270,6 @@ body {
     display: flex;
   }
 
-
   &__text {
     width: 40%;
     position: relative;
@@ -304,7 +310,6 @@ body {
     }
   }
 }
-
 
 // DOCUMENTS
 .documents__container {
