@@ -19,7 +19,6 @@ def image_directory_path(instance, filename):
 class Vacancy(models.Model):
     company = models.CharField('Компания', max_length=255)
     title = models.CharField('Должность', max_length=255)
-    slug = models.SlugField('URL', max_length=255, unique=True, db_index=True)
     salary = models.CharField('Зарплата', max_length=255)
     vessel_type = models.CharField('Тип судна', max_length=255, default="")
     date_start = models.DateField('Дата посадки')
