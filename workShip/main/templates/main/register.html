@@ -14,7 +14,15 @@
         <form method="post">
         {% csrf_token %}
 
-         {% for f in form %}
+         {% for f in user_form %}
+          <div class="form-floating mb-3">
+              {{ f }}
+              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+          </div>
+          {{ f.errors }}
+          {% endfor %}
+
+         {% for f in profile_form %}
           <div class="form-floating mb-3">
               {{ f }}
               <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>

@@ -17,7 +17,15 @@ def index(request):
 
 
 def register(request):
-    return render(request, 'main/register.html')
+    user_form = RegisterUserForm
+    profile_form = RegisterProfileForm
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'main/register.html', context=context)
 
 
 def in_develop(request):

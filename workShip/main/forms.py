@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class RegisterUserForm(UserCreationForm):
@@ -14,6 +15,14 @@ class RegisterUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+
+
+class RegisterProfileForm(forms.ModelForm):
+    is_company = forms.BooleanField(label='Это компания', widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+    company_name = forms.CharField(label='Название компании', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
+    class Meta:
+        model = Profile
+        fields = ('company_name', 'is_company')
 
 
 class LoginUserForm(AuthenticationForm):

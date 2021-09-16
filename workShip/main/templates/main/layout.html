@@ -15,20 +15,20 @@
       <div class="container">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="{% url 'home' %}" class="h5 d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" > <b>WORK</b>SHIP </a>
+            <a href="{% url 'home' %}" class="h5 d-flex align-items-center mb-2 mb-lg-0 mx-4 text-white text-decoration-none"> <b>WORK</b>SHIP</a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Услуги</a>
-                  <ul class="dropdown-menu dropdown-menu-dark border-0 pt-0 mx-0 rounded-3 shadow overflow-hidden" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'vacancies_home' %}">Вакансии</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'summaries_home' %}">Резюме</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'in_develop' %}">Английский для моряков</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'in_develop' %}">Рассылка CV</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'in_develop' %}">Морские документы</a></li>
-                    <li><a class="dropdown-item d-flex align-items-center gap-2 py-2" href="{% url 'in_develop' %}">Дельта тест</a></li>
+                  <ul class="dropdown-menu dropdown-menu-dark border-0 pt-0 mx-0 mt-2 rounded-3 shadow overflow-hidden" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'vacancies_home' %}">Вакансии</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'summaries_home' %}">Резюме</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'in_develop' %}">Английский для моряков</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'in_develop' %}">Рассылка CV</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'in_develop' %}">Морские документы</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-3 py-3" href="{% url 'in_develop' %}">Дельта тест</a></li>
                   </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'company_home' %}">Для компании</a></li>
@@ -41,7 +41,6 @@
                   {% endif %}
                   <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выйти</a></li>
                 {% else %}
-
                   <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Авторизация</a></li>
                 {% endif %}
               </ul>
@@ -50,9 +49,21 @@
         </nav>
       </div>
     </header>
+    <div class="bg-map">
     {% block content %}
+
     {% endblock %}
-    <footer></footer>
+    </div>
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Резюме</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Английский для моряков</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Для компании</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Консультация по морским документам</a></li>
+    </ul>
+      <p class="text-center text-muted">© 2021 WorkShip</p>
+    </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
 </html>

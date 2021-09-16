@@ -3,13 +3,13 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import *
 
 
-class CompanyInline(admin.StackedInline):
-    model = Company
+class ProfileInline(admin.StackedInline):
+    model = Profile
     can_delete = False
-    verbose_name = 'Компания'
+    verbose_name = 'Профиль'
 
 class UserAdmin(BaseUserAdmin):
-    inlines = (CompanyInline, )
+    inlines = (ProfileInline, )
 
 # Re-register UserAdmin
 admin.site.unregister(User)
