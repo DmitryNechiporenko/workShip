@@ -21,22 +21,22 @@ def image_directory_path(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_company = models.BooleanField(verbose_name='Это компания', default=False)
-    company_name = models.CharField(verbose_name='Название компании', max_length=255, blank=True)
-    patronymic = models.CharField(verbose_name='Отчество', max_length=255, blank=True)
+    company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True)
+    patronymic = models.CharField(verbose_name='Отчество', max_length=255, null=True)
     photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path,
                               default='static/defaultuser.png', null=True)
     country = models.CharField(verbose_name='Страна', max_length=100, blank=False)
     city = models.CharField(verbose_name='Город', max_length=100, blank=False)
-    phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, blank=True)
-    birthdate = models.DateField(verbose_name='Дата рождения')
+    phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, null=True)
+    birthdate = models.DateField(verbose_name='Дата рождения', null=True)
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+#@receiver(post_save, sender=User)
+#def create_user_profile(sender, instance, created, **kwargs):
+#    if created:
+#        Profile.objects.create(user=instance)
 
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+#@receiver(post_save, sender=User)
+#def save_user_profile(sender, instance, **kwargs):
+#    instance.profile.save()

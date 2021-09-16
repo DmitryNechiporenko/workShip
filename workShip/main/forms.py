@@ -20,9 +20,13 @@ class RegisterUserForm(UserCreationForm):
 class RegisterProfileForm(forms.ModelForm):
     is_company = forms.BooleanField(label='Это компания', widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     company_name = forms.CharField(label='Название компании', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
+    country = forms.CharField(label='Страна', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Страна'}))
+    city = forms.CharField(label='Город', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Город'}))
     class Meta:
         model = Profile
-        fields = ('company_name', 'is_company')
+        fields = ('country', 'city', 'company_name', 'is_company')
 
 
 class LoginUserForm(AuthenticationForm):

@@ -17,8 +17,30 @@ def index(request):
 
 
 def register(request):
-    user_form = RegisterUserForm
-    profile_form = RegisterProfileForm
+    if request.method == 'POST':
+        user_form = RegisterUserForm(request.POST)
+        profile_form = RegisterProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password1'])
+            # Save the User object
+            new_user.save()
+            profile = Profile.objects.create(
+                user=new_user,
+                is_company=profile_form.cleaned_data['is_company'],
+                company_name=profile_form.cleaned_data['company_name'],
+                patronymic=profile_form.cleaned_data['patronymic'],
+                country=profile_form.cleaned_data['country'],
+                city=profile_form.cleaned_data['city'],
+                birthdate=profile_form.cleaned_data['birthdate'],
+                phone_number=profile_form.cleaned_data['phone_number'])
+            return redirect('login')
+    else:
+
+        user_form = RegisterUserForm
+        profile_form = RegisterProfileForm
 
     context = {
         'user_form': user_form,
