@@ -27,6 +27,14 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password1'])
             # Save the User object
             new_user.save()
+
+            if not 'patronymic' in profile_form.cleaned_data:
+                profile_form.cleaned_data['patronymic'] = None
+            if not 'birthdate' in profile_form.cleaned_data:
+                profile_form.cleaned_data['birthdate'] = None
+            if not 'phone_number' in profile_form.cleaned_data:
+                profile_form.cleaned_data['phone_number'] = None
+
             profile = Profile.objects.create(
                 user=new_user,
                 is_company=profile_form.cleaned_data['is_company'],
