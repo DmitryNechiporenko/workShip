@@ -1,0 +1,97 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="h3 my-3 fw-normal">Регистрация</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="{{ user_form.username.id_for_label }}">{{ user_form.username.label }}</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">@</div>
+                                </div>
+                                {{ user_form.username }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-4">
+                            <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                            {{ user_form.first_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                            {{ user_form.last_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ profile_form.patronymic.id_for_label }}">{{ profile_form.patronymic.label }}</label>
+                            {{ profile_form.patronymic }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                            {{ user_form.email }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ profile_form.phone_number.id_for_label }}">{{ profile_form.phone_number.label }}</label>
+                            {{ profile_form.phone_number }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ user_form.password1.id_for_label }}">{{ user_form.password1.label }}</label>
+                            {{ user_form.password1 }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ user_form.password2.id_for_label }}">{{ user_form.password2.label }}</label>
+                            {{ user_form.password2 }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ profile_form.birthdate.id_for_label }}">{{ profile_form.birthdate.label }}</label>
+                            {{ profile_form.birthdate }}
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ profile_form.photo.id_for_label }}">{{ profile_form.photo.label }}</label>
+                                <br>
+                                {{ profile_form.photo }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
+
+                </form>
+
+                <div class="my-3 text-center">
+                  <a class="link-primary" href="{% url 'login' %}">Войти</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}

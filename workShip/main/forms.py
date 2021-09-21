@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -18,15 +20,21 @@ class RegisterUserForm(UserCreationForm):
 
 
 class RegisterProfileForm(forms.ModelForm):
-    is_company = forms.BooleanField(label='Это компания', widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+    patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
+    phone_number = forms.CharField(label='Номер телефона', required=False,
+                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}))
+    is_company = forms.BooleanField(label='Это компания', required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     company_name = forms.CharField(label='Название компании', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
     country = forms.CharField(label='Страна', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Страна'}))
     city = forms.CharField(label='Город', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Город'}))
+    birthdate = forms.DateField(label='Дата рождения', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    photo = forms.ImageField(label='Фото', widget=forms.FileInput())
+
     class Meta:
         model = Profile
-        fields = ('country', 'city', 'company_name', 'is_company')
+        fields = ('patronymic', 'phone_number', 'country', 'city', 'company_name', 'is_company', 'birthdate', 'photo')
 
 
 class LoginUserForm(AuthenticationForm):

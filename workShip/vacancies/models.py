@@ -24,7 +24,7 @@ class Vacancy(models.Model):
     date_start = models.DateField('Дата посадки')
     landing = models.CharField('Место посадки', max_length=255, default="")
     contract_term = models.CharField('Срок контракта', max_length=255, default="")
-    image = models.ImageField(verbose_name='Изображение', upload_to=image_directory_path, storage=image_storage, default='static/defaultuser.png')
+    image = models.ImageField(verbose_name='Изображение', upload_to=image_directory_path, storage=image_storage, default='defaultuser.png')
     time_create = models.DateTimeField('Дата создания', auto_now_add=True, null=True)
     time_update = models.DateTimeField('Дата изменения', auto_now=True, null=True)
     is_published = models.BooleanField('Публикация', default=True)

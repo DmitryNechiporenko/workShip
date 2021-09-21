@@ -6,39 +6,32 @@
 
 {% block content %}
 <div class="container text-center">
-    <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
+        <h1 class="h3 my-3 fw-normal">Кто вы?</h1>
 
-
-        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
-
-        <form method="post">
-        {% csrf_token %}
-
-         {% for f in user_form %}
-          <div class="form-floating mb-3">
-              {{ f }}
-              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-          </div>
-          {{ f.errors }}
-          {% endfor %}
-
-         {% for f in profile_form %}
-          <div class="form-floating mb-3">
-              {{ f }}
-              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-          </div>
-          {{ f.errors }}
-          {% endfor %}
-        <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
-
-        </form>
-
-          <div class="mb-3 mt-3">
-              <a class="link-primary" href="{% url 'login' %}">Войти</a>
-          </div>
-
-
-    </div>
+        <div class="register-choose">
+            <div class="row">
+                <div class="col-6">
+                    <a href="{% url 'register_company' %}">
+                        <div class="card">
+                            <i class="fas fa-ship"></i>
+                            <span>
+                                Компания
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'register_seaman' %}">
+                        <div class="card">
+                            <i class="fas fa-user-circle"></i>
+                            <span>
+                                Моряк
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
 </div>
 
 

@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'main/index.html', {'vacancies': vacancies})
 
 
-def register(request):
+def register_company(request):
     if request.method == 'POST':
         user_form = RegisterUserForm(request.POST)
         profile_form = RegisterProfileForm(request.POST)
@@ -55,7 +55,46 @@ def register(request):
         'profile_form': profile_form
     }
 
-    return render(request, 'main/register.html', context=context)
+    return render(request, 'main/register_company.html', context=context)
+
+
+def register_seaman(request):
+    if request.method == 'POST':
+        user_form = RegisterUserForm(request.POST)
+        profile_form = RegisterProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password1'])
+            # Save the User object
+            new_user.save()
+
+            profile = Profile.objects.create(
+                user=new_user,
+                is_company=False,
+                company_name=None,
+                patronymic=profile_form.cleaned_data['patronymic'],
+                country=profile_form.cleaned_data['country'],
+                city=profile_form.cleaned_data['city'],
+                birthdate=profile_form.cleaned_data['birthdate'],
+                phone_number=profile_form.cleaned_data['phone_number'])
+            return redirect('login')
+    else:
+
+        user_form = RegisterUserForm
+        profile_form = RegisterProfileForm
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'main/register_seaman.html', context=context)
+
+
+def register(request):
+    return render(request, 'main/register.html')
 
 
 def in_develop(request):
@@ -64,7 +103,7 @@ def in_develop(request):
 
 class RegisterUser(DataMixin, CreateView):
     form_class = RegisterUserForm
-    template_name = 'main/register.html'
+    template_name = 'main/register_company.html'
     success_url = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):

@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.db import models
@@ -24,11 +26,11 @@ class Profile(models.Model):
     company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True)
     patronymic = models.CharField(verbose_name='Отчество', max_length=255, null=True)
     photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path,
-                              default='static/defaultuser.png', null=True)
+                              default='defaultuser.png', null=True)
     country = models.CharField(verbose_name='Страна', max_length=100, blank=False)
     city = models.CharField(verbose_name='Город', max_length=100, blank=False)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, null=True)
-    birthdate = models.DateField(verbose_name='Дата рождения', null=True)
+    birthdate = models.DateField(verbose_name='Дата рождения', default=datetime.date.today, null=True)
 
 
 #@receiver(post_save, sender=User)

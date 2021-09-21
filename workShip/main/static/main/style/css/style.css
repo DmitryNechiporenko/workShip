@@ -349,6 +349,31 @@ footer {
   height: auto;
 }
 
+.register-choose a {
+  text-decoration: none;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.register-choose a:hover {
+  color: #19666b;
+}
+
+.register-choose i {
+  font-size: 80px;
+  margin: 10px;
+}
+
+.register-choose span {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.register-choose .card {
+  padding: 20px;
+}
+
 .registration {
   display: block;
   width: 1000px;

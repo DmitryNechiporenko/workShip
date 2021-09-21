@@ -27,7 +27,8 @@ urlpatterns = [
     path('seaman/', include('seaman.urls')),
     path('services/', include('services.urls')),
     path('education/', include('education.urls')),
-    path('company/', include('company.urls'))
+    path('company/', include('company.urls')),
+    path('personalaccount/', include('personal_account.urls'))
 ]
 
 if settings.DEBUG:

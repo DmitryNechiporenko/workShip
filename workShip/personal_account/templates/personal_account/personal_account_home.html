@@ -1,0 +1,69 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Личный кабинет
+{% endblock %}
+
+{% block content %}
+
+      <div class="wrapper">
+        <div class="vacancies">
+          <div class="vacancies__header">
+            <h2>Личный кабинет</h2>
+          </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <h5>ФИО</h5>
+                                {{ request.user.get_full_name}}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <h5>Дата рождения</h5>
+                                {{ profile.birthdate }}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-6">
+                                <h5>Страна</h5>
+                                {{ profile.country }}
+                            </div>
+                            <div class="col-6">
+                                <h5>Город</h5>
+                                {{ profile.city }}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-6">
+                                <h5>
+                                    Номер телефона
+                                </h5>
+                                {{ profile.phone_number }}
+                            </div>
+                            <div class="col-6">
+                                <h5>
+                                    Почта
+                                </h5>
+                                {{ request.user.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="#" class="btn btn-info text-white">Редактировать профиль</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 my-4">
+                        <img src="{{ profile.photo.url }}" class="rounded mx-auto d-block" alt="profile photo">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+      </div>
+
+{% endblock %}

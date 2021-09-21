@@ -288,6 +288,31 @@ footer {
 }
 
 //REGISTRATION
+.register-choose {
+  a {
+    text-decoration: none;
+    transition: 0.4s;
+
+    &:hover {
+      color: #19666b;
+    }
+  }
+
+  i {
+    font-size: 80px;
+    margin: 10px;
+  }
+
+  span {
+    margin: 10px;
+    font-size: 18px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+}
+
 .registration {
   display: block;
   width: 1000px;
