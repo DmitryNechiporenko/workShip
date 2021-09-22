@@ -4,9 +4,8 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
       <div class="wrapper">
-        <div class="vacancies">
           <div class="vacancies__header">
             <h2>Личный кабинет</h2>
           </div>
@@ -57,13 +56,12 @@
                         </div>
                     </div>
                     <div class="col-4 my-4">
-                        <img src="{{ profile.photo.url }}" class="rounded mx-auto d-block" alt="profile photo">
+                        <img src="{{ profile.photo.url }}" class="rounded mx-auto d-block img-fluid" alt="profile photo">
                     </div>
                 </div>
             </div>
 
-        </div>
 
       </div>
-
+</div>
 {% endblock %}

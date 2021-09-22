@@ -6,35 +6,37 @@
 
 {% block content %}
 <div class="container text-center">
-    <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
+    <div class="wrapper">
+        <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
 
 
-        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+            <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
 
-        <form method="post">
-        {% csrf_token %}
+            <form method="post">
+            {% csrf_token %}
 
-        {{ form.non_field_errors }}
+            {{ form.non_field_errors }}
 
-         {% for f in form %}
-          <div class="form-floating mb-3">
-              {{ f }}
-              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-          </div>
-          {{ f.errors }}
-          {% endfor %}
-        <button type="submit" class= "w-100 btn btn-mg btn-primary">Войти</button>
+             {% for f in form %}
+              <div class="form-floating mb-3">
+                  {{ f }}
+                  <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+              </div>
+              {{ f.errors }}
+              {% endfor %}
+            <button type="submit" class= "w-100 btn btn-mg btn-primary">Войти</button>
 
-        </form>
+            </form>
 
-          <div class="mb-3 mt-3">
-              <a class="link-primary" href="{% url 'password_reset' %}">Забыли пароль?</a>
-          </div>
+              <div class="mb-3 mt-3">
+                  <a class="link-primary" href="{% url 'password_reset' %}">Забыли пароль?</a>
+              </div>
 
-        <div class="mb-3">
-            <a class="link-primary" href="{% url 'register' %}">Регистрация</a>
+            <div class="mb-3">
+                <a class="link-primary" href="{% url 'register' %}">Регистрация</a>
+            </div>
+
         </div>
-
     </div>
 </div>
 {% endblock %}

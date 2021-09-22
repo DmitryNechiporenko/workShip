@@ -6,45 +6,47 @@
 
 {% block content %}
 <div class="container text-center">
-    <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
+    <div class="wrapper">
+        <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
 
 
-        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
 
-        <form method="post">
-        {% csrf_token %}
+            <form method="post">
+            {% csrf_token %}
 
-         {% for f in user_form %}
-          <div class="form-floating mb-3">
-              {{ f }}
-              <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-          </div>
-          {{ f.errors }}
-          {% endfor %}
-
-         {% for f in profile_form %}
-            {% if 'checkbox' in f.as_widget %}
-                <div class="form-group mb-3">
-                    {{ f }}
-                    <label for="{{ f.id_for_label }}" class="form-check-label">{{ f.label }}</label>
-                </div>
-              {% else %}
-                <div class="form-floating mb-3">
-                    {{ f }}
-                    <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-                </div>
-              {% endif %}
+             {% for f in user_form %}
+              <div class="form-floating mb-3">
+                  {{ f }}
+                  <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+              </div>
               {{ f.errors }}
-          {% endfor %}
-        <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
+              {% endfor %}
 
-        </form>
+             {% for f in profile_form %}
+                {% if 'checkbox' in f.as_widget %}
+                    <div class="form-group mb-3">
+                        {{ f }}
+                        <label for="{{ f.id_for_label }}" class="form-check-label">{{ f.label }}</label>
+                    </div>
+                  {% else %}
+                    <div class="form-floating mb-3">
+                        {{ f }}
+                        <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+                    </div>
+                  {% endif %}
+                  {{ f.errors }}
+              {% endfor %}
+            <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
 
-          <div class="mb-3 mt-3">
-              <a class="link-primary" href="{% url 'login' %}">Войти</a>
-          </div>
+            </form>
+
+              <div class="mb-3 mt-3">
+                  <a class="link-primary" href="{% url 'login' %}">Войти</a>
+              </div>
 
 
+        </div>
     </div>
 </div>
 
