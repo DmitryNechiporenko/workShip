@@ -5,47 +5,116 @@
 {% endblock %}
 
 {% block content %}
-<div class="container text-center">
+<div class="container">
     <div class="wrapper">
-        <div class="form-signin" style="max-width: 330px; margin: 10px auto;">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="h3 my-3 fw-normal">Регистрация</h1>
+            </div>
+        </div>
 
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{ profile_form.errors }}
+        </div>
+    </div>
 
-            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            <form method="post">
-            {% csrf_token %}
-
-             {% for f in user_form %}
-              <div class="form-floating mb-3">
-                  {{ f }}
-                  <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
-              </div>
-              {{ f.errors }}
-              {% endfor %}
-
-             {% for f in profile_form %}
-                {% if 'checkbox' in f.as_widget %}
-                    <div class="form-group mb-3">
-                        {{ f }}
-                        <label for="{{ f.id_for_label }}" class="form-check-label">{{ f.label }}</label>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="{{ user_form.username.id_for_label }}">{{ user_form.username.label }}</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">@</div>
+                                </div>
+                                {{ user_form.username }}
+                            </div>
+                        </div>
                     </div>
-                  {% else %}
-                    <div class="form-floating mb-3">
-                        {{ f }}
-                        <label for="{{ f.id_for_label }}" class="floatingInput">{{ f.label }}</label>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ user_form.password1.id_for_label }}">{{ user_form.password1.label }}</label>
+                            {{ user_form.password1 }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ user_form.password2.id_for_label }}">{{ user_form.password2.label }}</label>
+                            {{ user_form.password2 }}
+                        </div>
                     </div>
-                  {% endif %}
-                  {{ f.errors }}
-              {% endfor %}
-            <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
 
-            </form>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ profile_form.company_name.id_for_label }}">{{ profile_form.company_name.label }}</label>
+                            {{ profile_form.company_name }}
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ profile_form.logo.id_for_label }}">{{ profile_form.logo.label }}</label>
+                                <br>
+                                {{ profile_form.logo }}
+                            </div>
+                        </div>
+                    </div>
 
-              <div class="mb-3 mt-3">
+                    <div class="row my-3">
+                        <div class="col-4">
+                            <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                            {{ user_form.first_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                            {{ user_form.last_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ profile_form.contact_patronymic.id_for_label }}">{{ profile_form.contact_patronymic.label }}</label>
+                            {{ profile_form.contact_patronymic }}
+                        </div>
+                    </div>
+
+                     <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ profile_form.address.id_for_label }}">{{ profile_form.address.label }}</label>
+                            {{ profile_form.address }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ profile_form.about.id_for_label }}">{{ profile_form.about.label }}</label>
+                            {{ profile_form.about }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                            {{ user_form.email }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ profile_form.phone_number.id_for_label }}">{{ profile_form.phone_number.label }}</label>
+                            {{ profile_form.phone_number }}
+                        </div>
+                    </div>
+
+
+
+
+
+                    <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
+
+                </form>
+
+                <div class="my-3 text-center">
                   <a class="link-primary" href="{% url 'login' %}">Войти</a>
-              </div>
-
-
+                </div>
+            </div>
         </div>
     </div>
 </div>

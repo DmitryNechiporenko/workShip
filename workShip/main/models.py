@@ -1,6 +1,6 @@
 import datetime
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.conf import settings
@@ -31,6 +31,16 @@ class Profile(models.Model):
     city = models.CharField(verbose_name='Город', max_length=100, blank=False)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, null=True)
     birthdate = models.DateField(verbose_name='Дата рождения', default=datetime.date.today, null=True)
+
+
+class CompanyProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    company_name = models.CharField(verbose_name='Название компании', max_length=255)
+    logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, default='defaultuser.png')
+    address = models.CharField(verbose_name='Адрес', max_length=255)
+    about = models.TextField(verbose_name='О компании')
+    contact_patronymic = models.CharField(verbose_name='Отчество', max_length=255)
+    phone_number = models.CharField(verbose_name='Номер телефона', max_length=12)
 
 
 #@receiver(post_save, sender=User)

@@ -19,7 +19,8 @@ def index(request):
 def register_company(request):
     if request.method == 'POST':
         user_form = RegisterUserForm(request.POST)
-        profile_form = RegisterProfileForm(request.POST)
+        profile_form = RegisterCompanyProfileForm(request.POST, request.FILES)
+
         if user_form.is_valid() and profile_form.is_valid():
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
@@ -28,27 +29,27 @@ def register_company(request):
             # Save the User object
             new_user.save()
 
-            if not 'patronymic' in profile_form.cleaned_data:
-                profile_form.cleaned_data['patronymic'] = None
-            if not 'birthdate' in profile_form.cleaned_data:
-                profile_form.cleaned_data['birthdate'] = None
-            if not 'phone_number' in profile_form.cleaned_data:
-                profile_form.cleaned_data['phone_number'] = None
+            print(profile_form.cleaned_data)
 
-            profile = Profile.objects.create(
+            profile = CompanyProfile.objects.create(
                 user=new_user,
-                is_company=profile_form.cleaned_data['is_company'],
                 company_name=profile_form.cleaned_data['company_name'],
-                patronymic=profile_form.cleaned_data['patronymic'],
-                country=profile_form.cleaned_data['country'],
-                city=profile_form.cleaned_data['city'],
-                birthdate=profile_form.cleaned_data['birthdate'],
-                phone_number=profile_form.cleaned_data['phone_number'])
+                phone_number=profile_form.cleaned_data['phone_number'],
+                logo=profile_form.cleaned_data['logo'],
+                address=profile_form.cleaned_data['address'],
+                about=profile_form.cleaned_data['about'],
+                contact_patronymic=profile_form.cleaned_data['contact_patronymic']
+                )
+
+
             return redirect('login')
+        else:
+            print(user_form.errors)
+            print(profile_form.errors)
     else:
 
         user_form = RegisterUserForm
-        profile_form = RegisterProfileForm
+        profile_form = RegisterCompanyProfileForm
 
     context = {
         'user_form': user_form,
@@ -71,8 +72,6 @@ def register_seaman(request):
             new_user.set_password(user_form.cleaned_data['password1'])
             # Save the User object
             new_user.save()
-
-            print(profile_form.cleaned_data)
 
             profile = Profile.objects.create(
                 user=new_user,

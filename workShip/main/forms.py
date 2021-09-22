@@ -3,7 +3,7 @@ import datetime
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import *
 
 
 class RegisterUserForm(UserCreationForm):
@@ -29,6 +29,19 @@ class RegisterSeamanProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('patronymic', 'phone_number', 'company_name', 'birthdate', 'photo')
+
+
+class RegisterCompanyProfileForm(forms.ModelForm):
+    company_name = forms.CharField(label='Название компании', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
+    logo = forms.ImageField(label='Логотип', widget=forms.FileInput())
+    address = forms.CharField(label='Адрес', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Адрес'}))
+    about = forms.CharField(label='О компании', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+    contact_patronymic = forms.CharField(label='Отчество (если имеется)', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
+    phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}))
+
+    class Meta:
+        model = CompanyProfile
+        fields = ('company_name', 'logo', 'address', 'about', 'contact_patronymic', 'phone_number')
 
 
 class RegisterProfileForm(forms.ModelForm):
