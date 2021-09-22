@@ -61,7 +61,8 @@ def register_company(request):
 def register_seaman(request):
     if request.method == 'POST':
         user_form = RegisterUserForm(request.POST)
-        profile_form = RegisterProfileForm(request.POST)
+        profile_form = RegisterProfileForm(request.POST, request.FILES)
+
         if user_form.is_valid() and profile_form.is_valid():
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
@@ -70,15 +71,16 @@ def register_seaman(request):
             # Save the User object
             new_user.save()
 
+
+
             profile = Profile.objects.create(
                 user=new_user,
-                is_company=False,
-                company_name=None,
                 patronymic=profile_form.cleaned_data['patronymic'],
                 country=profile_form.cleaned_data['country'],
                 city=profile_form.cleaned_data['city'],
                 birthdate=profile_form.cleaned_data['birthdate'],
-                phone_number=profile_form.cleaned_data['phone_number'])
+                phone_number=profile_form.cleaned_data['phone_number'],
+                photo=profile_form.cleaned_data['photo'])
             return redirect('login')
     else:
 

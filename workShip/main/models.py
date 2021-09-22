@@ -26,7 +26,7 @@ class Profile(models.Model):
     company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True)
     patronymic = models.CharField(verbose_name='Отчество', max_length=255, null=True)
     photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path,
-                              default='defaultuser.png', null=True)
+                              default='defaultuser.png', null=True, blank=True)
     country = models.CharField(verbose_name='Страна', max_length=100, blank=False)
     city = models.CharField(verbose_name='Город', max_length=100, blank=False)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, null=True)
