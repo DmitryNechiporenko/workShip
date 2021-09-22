@@ -61,9 +61,10 @@ def register_company(request):
 def register_seaman(request):
     if request.method == 'POST':
         user_form = RegisterUserForm(request.POST)
-        profile_form = RegisterProfileForm(request.POST, request.FILES)
+        profile_form = RegisterSeamanProfileForm(request.POST, request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
+
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
             # Set the chosen password
@@ -71,13 +72,11 @@ def register_seaman(request):
             # Save the User object
             new_user.save()
 
-
+            print(profile_form.cleaned_data)
 
             profile = Profile.objects.create(
                 user=new_user,
                 patronymic=profile_form.cleaned_data['patronymic'],
-                country=profile_form.cleaned_data['country'],
-                city=profile_form.cleaned_data['city'],
                 birthdate=profile_form.cleaned_data['birthdate'],
                 phone_number=profile_form.cleaned_data['phone_number'],
                 photo=profile_form.cleaned_data['photo'])
@@ -85,7 +84,7 @@ def register_seaman(request):
     else:
 
         user_form = RegisterUserForm
-        profile_form = RegisterProfileForm
+        profile_form = RegisterSeamanProfileForm
 
     context = {
         'user_form': user_form,

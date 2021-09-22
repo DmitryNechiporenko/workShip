@@ -23,7 +23,7 @@ def image_directory_path(instance, filename):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_company = models.BooleanField(verbose_name='Это компания', default=False)
-    company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True)
+    company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True, blank=True)
     patronymic = models.CharField(verbose_name='Отчество', max_length=255, null=True)
     photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path,
                               default='defaultuser.png', null=True, blank=True)

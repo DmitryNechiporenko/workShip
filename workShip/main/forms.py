@@ -19,22 +19,30 @@ class RegisterUserForm(UserCreationForm):
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
 
+class RegisterSeamanProfileForm(forms.ModelForm):
+    patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
+    phone_number = forms.CharField(label='Номер телефона', required=False,
+                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}))
+    birthdate = forms.DateField(label='Дата рождения', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
+    photo = forms.ImageField(label='Фото', required=False, widget=forms.FileInput())
+
+    class Meta:
+        model = Profile
+        fields = ('patronymic', 'phone_number', 'company_name', 'birthdate', 'photo')
+
+
 class RegisterProfileForm(forms.ModelForm):
     patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
     phone_number = forms.CharField(label='Номер телефона', required=False,
                                  widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}))
     is_company = forms.BooleanField(label='Это компания', required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
-    company_name = forms.CharField(label='Название компании', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
-    country = forms.CharField(label='Страна', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Страна'}))
-    city = forms.CharField(label='Город', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Город'}))
+    company_name = forms.CharField(label='Название компании', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название компании'}))
     birthdate = forms.DateField(label='Дата рождения', widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))
-    photo = forms.ImageField(label='Фото', widget=forms.FileInput())
+    photo = forms.ImageField(label='Фото', required=False, widget=forms.FileInput())
 
     class Meta:
         model = Profile
-        fields = ('patronymic', 'phone_number', 'country', 'city', 'company_name', 'is_company', 'birthdate', 'photo')
+        fields = ('patronymic', 'phone_number', 'company_name', 'birthdate', 'photo')
 
 
 class LoginUserForm(AuthenticationForm):
