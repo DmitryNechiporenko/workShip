@@ -6,4 +6,5 @@ from .views import *
 urlpatterns = [
     path('', vacancies_home.as_view(), name='vacancies_home'),
     path('detail/<int:vacancy_id>/', views.vacancies_detail, name='vacancies_detail'),
+    path('add/', views.vacancies_add, name='vacancies_add')
 ]

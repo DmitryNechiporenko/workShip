@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
 from .models import Vacancy
+from main.models import CompanyProfile
 from .utils import DataMixin
-
+from .forms import *
 
 class vacancies_home(DataMixin, ListView):
     paginate_by = 2
@@ -20,13 +21,30 @@ class vacancies_home(DataMixin, ListView):
         return Vacancy.objects.filter(is_published=True)
 
 
-
-
 def vacancies_detail(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, pk=vacancy_id)
+    company = CompanyProfile.objects.filter(user=vacancy.user).get()
 
     context = {
-        'vacancy': vacancy
+        'vacancy': vacancy,
+        'company': company
     }
 
     return render(request, 'vacancies/vacancies_detail.html', context=context)
+
+
+def vacancies_add(request):
+    if request.method == 'POST':
+        vacancies_form = AddVacancyForm(request.POST)
+
+        if vacancies_form.is_valid():
+            vacancies_form.save()
+            return redirect('vacancies')
+        else:
+            print(vacancies_form.errors)
+    else:
+        vacancies_form = AddVacancyForm
+    context = {
+        'vacancies_form': vacancies_form
+    }
+    return render(request, 'vacancies/vacancies_add.html', context=context)

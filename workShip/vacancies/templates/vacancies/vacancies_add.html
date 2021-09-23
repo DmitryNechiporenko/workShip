@@ -1,0 +1,96 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}
+Добавление вакансии
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="wrapper">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="h3 my-3 fw-normal">Добавление вакансии</h1>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{ vacancies_form.errors }}
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="{{ vacancies_form.title.id_for_label }}">{{ vacancies_form.title.label }}</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <div class="input-group-text">@</div>
+                                </div>
+                                {{ vacancies_form.title }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ vacancies_form.salary.id_for_label }}">{{ vacancies_form.salary.label }}</label>
+                            {{ vacancies_form.salary }}
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ vacancies_form.vessel_type.id_for_label }}">{{ vacancies_form.vessel_type.label }}</label>
+                            {{ vacancies_form.vessel_type }}
+                        </div>
+                        <div class="col-6">
+                            <label for="{{ vacancies_form.date_start.id_for_label }}">{{ vacancies_form.date_start.label }}</label>
+                            {{ vacancies_form.date_start }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ vacancies_form.landing.id_for_label }}">{{ vacancies_form.landing.label }}</label>
+                            {{ vacancies_form.landing }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ vacancies_form.contract_term.id_for_label }}">{{ vacancies_form.contract_term.label }}</label>
+                            {{ vacancies_form.contract_term }}
+                        </div>
+                    </div>
+
+
+
+                    <div class="row my-3">
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ vacancies_form.image.id_for_label }}">{{ vacancies_form.image.label }}</label>
+                                <br>
+                                {{ vacancies_form.image }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class= "w-100 btn btn-mg btn-primary">Регистрация</button>
+
+                </form>
+
+                <div class="my-3 text-center">
+                  <a class="link-primary" href="{% url 'login' %}">Войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

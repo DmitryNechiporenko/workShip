@@ -18,8 +18,7 @@ def image_directory_path(instance, filename):
 
 
 class Vacancy(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
-    company = models.CharField('Компания', max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField('Должность', max_length=255)
     salary = models.CharField('Зарплата', max_length=255)
     vessel_type = models.CharField('Тип судна', max_length=255, default="")

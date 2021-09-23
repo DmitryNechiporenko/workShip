@@ -45,9 +45,14 @@
                                 {{ request.user.email }}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-6">
                                 <a href="#" class="btn btn-info text-white">Редактировать профиль</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'vacancies_add' %}" class="btn btn-outline-primary">Добавить вакансию</a>
                             </div>
                         </div>
                     </div>
@@ -65,18 +70,24 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Название</th>
+                                    <th scope="col">Должность</th>
                                     <th scope="col">Зарплата</th>
                                     <th scope="col">Отклики</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Повар</td>
-                                    <td>30 000</td>
+
+                            {% for vacancy in vacancies %}
+
+                               <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td><a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a></td>
+                                    <td>{{ vacancy.salary }}</td>
                                     <td>15</td>
                                 </tr>
+
+                          {% endfor %}
+
                             </tbody>
                         </table>
                     </div>
