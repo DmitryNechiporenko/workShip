@@ -1,0 +1,87 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Личный кабинет
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="wrapper">
+          <div class="vacancies__header">
+            <h2>Личный кабинет</h2>
+          </div>
+
+
+                <div class="row mb-5">
+                    <div class="col-8">
+                      <div class="row my-4">
+                            <div class="col-12">
+                                <h5>Компания</h5>
+                                {{ profile.company_name }}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <h5>ФИО для контакта</h5>
+                                {{ request.user.get_full_name}} {{ profile.contact_patronymic }}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <h5>Адрес</h5>
+                                {{ profile.address }}
+                            </div>
+                        </div>
+                        <div class="row my-4">
+                            <div class="col-6">
+                                <h5>
+                                    Номер телефона
+                                </h5>
+                                {{ profile.phone_number }}
+                            </div>
+                            <div class="col-6">
+                                <h5>
+                                    Почта
+                                </h5>
+                                {{ request.user.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="#" class="btn btn-info text-white">Редактировать профиль</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 my-4">
+                        <img src="{{ profile.logo.url }}" class="rounded mx-auto d-block img-fluid" alt="company logo">
+                    </div>
+                </div>
+                <div class="row my-6">
+                    <div class="col-12 my-6">
+                        <h5>
+                            Вакансии
+                        </h5>
+
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Название</th>
+                                    <th scope="col">Зарплата</th>
+                                    <th scope="col">Отклики</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Повар</td>
+                                    <td>30 000</td>
+                                    <td>15</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+      </div>
+</div>
+{% endblock %}

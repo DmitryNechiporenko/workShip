@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
@@ -17,6 +18,7 @@ def image_directory_path(instance, filename):
 
 
 class Vacancy(models.Model):
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     company = models.CharField('Компания', max_length=255)
     title = models.CharField('Должность', max_length=255)
     salary = models.CharField('Зарплата', max_length=255)
