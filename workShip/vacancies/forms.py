@@ -10,6 +10,7 @@ class AddVacancyForm(forms.ModelForm):
     landing = forms.CharField(label='Место посадки', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Место посадки'}))
     contract_term = forms.CharField(label='Срок контракта', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Срок контракта'}))
     image = forms.ImageField(label='Изображение', required=False, widget=forms.FileInput())
+    user = forms.Field(required=False)
 
     class Meta:
         model = Vacancy

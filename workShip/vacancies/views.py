@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
@@ -33,13 +34,17 @@ def vacancies_detail(request, vacancy_id):
     return render(request, 'vacancies/vacancies_detail.html', context=context)
 
 
+@login_required
 def vacancies_add(request):
     if request.method == 'POST':
         vacancies_form = AddVacancyForm(request.POST)
+        vacancies_form.instance.user = request.user
 
         if vacancies_form.is_valid():
-            vacancies_form.save()
-            return redirect('vacancies')
+            vacancies_form.save(commit=False)
+            #vacancies_form.cleaned_data['user'] = request.user
+            vacancies_form = vacancies_form.save()
+            return redirect('vacancies_home')
         else:
             print(vacancies_form.errors)
     else:
