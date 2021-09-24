@@ -7,7 +7,7 @@
 <div class="container">
       <div class="wrapper">
           <div class="vacancies__header">
-            <h2>Личный кабинет</h2>
+            <h2>Редактирование профиля</h2>
           </div>
 
 
@@ -47,49 +47,12 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-6">
-                                <a href="{% url 'personal_account_edit' %}" class="btn btn-info text-white">Редактировать профиль</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="{% url 'vacancies_add' %}" class="btn btn-outline-primary">Добавить вакансию</a>
+                                <a href="#" class="btn btn-success text-white">Сохранить</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-4 my-4">
                         <img src="{{ profile.logo.url }}" class="rounded mx-auto d-block img-fluid" alt="company logo">
-                    </div>
-                </div>
-                <div class="row my-6">
-                    <div class="col-12 my-6">
-                        <h5>
-                            Вакансии
-                        </h5>
-
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Должность</th>
-                                    <th scope="col">Зарплата</th>
-                                    <th scope="col">Отклики</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for vacancy in vacancies %}
-
-                               <tr>
-                                    <th scope="row">{{ forloop.counter }}</th>
-                                    <td><a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a></td>
-                                    <td>{{ vacancy.salary }}</td>
-                                    <td>15</td>
-                                </tr>
-
-                          {% endfor %}
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
