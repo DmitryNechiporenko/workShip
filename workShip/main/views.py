@@ -1,14 +1,15 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from vacancies.models import Vacancy
 
 from .forms import *
 from .utils import DataMixin
+from .models import *
 
 
 def index(request):
@@ -91,6 +92,33 @@ def register_seaman(request):
     }
 
     return render(request, 'main/register_seaman.html', context=context)
+
+
+def edit_company(request):
+    user = User.objects.get(id=request.user.id)
+    profile = CompanyProfile.objects.get(user=user)
+
+    if request.method == 'POST':
+        user_form = EditUserForm(data=request.POST, instance=request.user)
+        profile_form = RegisterCompanyProfileForm(request.POST, request.FILES)
+
+        print(user_form.errors)
+        print(profile_form.is_valid())
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+            return redirect('personal_account_home')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = RegisterCompanyProfileForm(instance=profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'main/edit_company.html', context=context)
 
 
 def register(request):

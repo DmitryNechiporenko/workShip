@@ -19,6 +19,16 @@ class RegisterUserForm(UserCreationForm):
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
 
+class EditUserForm(UserCreationForm):
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    first_name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}))
+    last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}))
+
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name')
+
+
 class RegisterSeamanProfileForm(forms.ModelForm):
     patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
     phone_number = forms.CharField(label='Номер телефона', required=False,
@@ -44,6 +54,7 @@ class RegisterCompanyProfileForm(forms.ModelForm):
         fields = ('company_name', 'logo', 'address', 'about', 'contact_patronymic', 'phone_number')
 
 
+
 class RegisterProfileForm(forms.ModelForm):
     patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
     phone_number = forms.CharField(label='Номер телефона', required=False,
@@ -56,6 +67,8 @@ class RegisterProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('patronymic', 'phone_number', 'company_name', 'birthdate', 'photo')
+
+
 
 
 class LoginUserForm(AuthenticationForm):

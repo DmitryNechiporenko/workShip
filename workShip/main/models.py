@@ -36,7 +36,7 @@ class Profile(models.Model):
 class CompanyProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(verbose_name='Название компании', max_length=255)
-    logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, default='defaultuser.png')
+    logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, default='defaultuser.png', blank=True, null=True)
     address = models.CharField(verbose_name='Адрес', max_length=255)
     about = models.TextField(verbose_name='О компании')
     contact_patronymic = models.CharField(verbose_name='Отчество', max_length=255)
