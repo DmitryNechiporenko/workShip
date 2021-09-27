@@ -7,6 +7,7 @@ from main.models import CompanyProfile
 from .utils import DataMixin
 from .forms import *
 
+
 class vacancies_home(DataMixin, ListView):
     paginate_by = 2
     model = Vacancy

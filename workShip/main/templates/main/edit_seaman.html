@@ -1,0 +1,78 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}
+Обновление профиля
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="wrapper">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="h3 my-3 fw-normal">Обновление профиля</h1>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{ profile_form.errors }}
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row my-3">
+                        <div class="col-4">
+                            <label for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                            {{ user_form.first_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                            {{ user_form.last_name }}
+                        </div>
+                        <div class="col-4">
+                            <label for="{{ profile_form.patronymic.id_for_label }}">{{ profile_form.patronymic.label }}</label>
+                            {{ profile_form.patronymic }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                            {{ user_form.email }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ profile_form.phone_number.id_for_label }}">{{ profile_form.phone_number.label }}</label>
+                            {{ profile_form.phone_number }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ profile_form.birthdate.id_for_label }}">{{ profile_form.birthdate.label }}</label>
+                            {{ profile_form.birthdate }}
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ profile_form.photo.id_for_label }}">{{ profile_form.photo.label }}</label>
+                                <br>
+                                {{ profile_form.photo }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class= "w-100 btn btn-mg btn-success">Сохранить</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

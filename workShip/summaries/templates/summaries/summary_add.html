@@ -1,0 +1,86 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}
+Добавление резюме
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="wrapper">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="h3 my-3 fw-normal">Добавление резюме</h1>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            {{ summary_form.errors }}
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="{{ summary_form.name.id_for_label }}">{{ summary_form.name.label }}</label>
+                                {{ summary_form.name }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ summary_form.job.id_for_label }}">{{ summary_form.job.label }}</label>
+                            {{ summary_form.job }}
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ summary_form.city.id_for_label }}">{{ summary_form.city.label }}</label>
+                            {{ summary_form.city }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <label for="{{ summary_form.salary_min.id_for_label }}">{{ summary_form.salary_min.label }}</label>
+                            {{ summary_form.salary_min }}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="{{ summary_form.salary_max.id_for_label }}">{{ summary_form.salary_max.label }}</label>
+                            {{ summary_form.salary_max }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ summary_form.extra.id_for_label }}">{{ summary_form.extra.label }}</label>
+                            {{ summary_form.extra }}
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="{{ vacancies_form.image.id_for_label }}">{{ vacancies_form.image.label }}</label>
+                                <br>
+                                {{ vacancies_form.image }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class= "w-100 btn btn-mg btn-primary">Добавить вакансию</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

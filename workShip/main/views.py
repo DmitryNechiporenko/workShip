@@ -95,12 +95,11 @@ def register_seaman(request):
 
 
 def edit_company(request):
-    user = User.objects.get(id=request.user.id)
-    profile = CompanyProfile.objects.get(user=user)
+    profile = CompanyProfile.objects.get(user=request.user.id)
 
     if request.method == 'POST':
-        user_form = EditUserForm(data=request.POST, instance=request.user)
-        profile_form = RegisterCompanyProfileForm(request.POST, request.FILES)
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = RegisterCompanyProfileForm(request.POST, request.FILES, instance=profile)
 
         print(user_form.errors)
         print(profile_form.is_valid())
@@ -119,6 +118,32 @@ def edit_company(request):
     }
 
     return render(request, 'main/edit_company.html', context=context)
+
+
+def edit_seaman(request):
+    profile = Profile.objects.get(user=request.user.id)
+
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = RegisterSeamanProfileForm(request.POST, request.FILES, instance=profile)
+
+        print(user_form.errors)
+        print(profile_form.is_valid())
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+            return redirect('personal_account_home')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = RegisterSeamanProfileForm(instance=profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'main/edit_seaman.html', context=context)
 
 
 def register(request):

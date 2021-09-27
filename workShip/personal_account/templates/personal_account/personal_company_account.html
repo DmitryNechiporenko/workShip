@@ -45,6 +45,12 @@
                                 {{ request.user.email }}
                             </div>
                         </div>
+                        <div class="row my-4">
+                            <div class="col-12">
+                                <h5>О компании</h5>
+                                {{ profile.about }}
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <a href="{% url 'edit_company' %}" class="btn btn-info text-white">Редактировать профиль</a>

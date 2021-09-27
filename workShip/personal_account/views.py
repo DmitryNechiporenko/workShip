@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from main.models import Profile, CompanyProfile
 from vacancies.models import *
+from summaries.models import *
 
 
 @login_required
@@ -11,8 +12,11 @@ def personal_account_home(request):
     company_profile = CompanyProfile.objects.filter(user=request.user)
 
     if seaman_profile:
+        summaries = Summary.objects.filter(user=request.user)
+
         context = {
-            'profile': seaman_profile.get()
+            'profile': seaman_profile.get(),
+            'summaries': summaries
         }
         return render(request, 'personal_account/personal_seaman_account.html', context=context)
     elif company_profile:
