@@ -84,14 +84,12 @@
                             <tbody>
 
                             {% for vacancy in vacancies %}
-
                                <tr>
                                     <th scope="row">{{ forloop.counter }}</th>
                                     <td><a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a></td>
                                     <td>{{ vacancy.salary }}</td>
-                                    <td>15</td>
+                                    <td><a href="{% url 'vacancies_responses' vacancy.id %}">{{ vacancy.vacancyresponses__count }}</a></td>
                                 </tr>
-
                           {% endfor %}
 
                             </tbody>

@@ -2,8 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
-from .models import Vacancy
+from .models import *
 from main.models import CompanyProfile
+from summaries.models import Summary
 from .utils import DataMixin
 from .forms import *
 
@@ -25,14 +26,49 @@ class vacancies_home(DataMixin, ListView):
 
 def vacancies_detail(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, pk=vacancy_id)
+
+    if request.method == 'POST':
+        response_form = VacancyResponseForm(request.POST)
+        if response_form.is_valid():
+            response = VacancyResponses.objects.create(
+                vacancy=vacancy,
+                summary=response_form.cleaned_data['summary']
+                )
+
     company = CompanyProfile.objects.filter(user=vacancy.user).get()
+    summaries = Summary.objects.filter(user=request.user)
 
     context = {
         'vacancy': vacancy,
-        'company': company
+        'company': company,
+        'summaries': summaries
     }
 
     return render(request, 'vacancies/vacancies_detail.html', context=context)
+
+
+@login_required
+def vacancies_responses(request, vacancy_id):
+    vacancy = get_object_or_404(Vacancy, pk=vacancy_id, user=request.user)
+    responses = VacancyResponses.objects.filter(vacancy=vacancy)
+
+    context = {
+        'vacancy': vacancy,
+        'responses': responses
+    }
+
+    return render(request, 'vacancies/vacancies_responses.html', context=context)
+
+
+@login_required
+def vacancies_response_detail(request, response_id):
+    response = get_object_or_404(VacancyResponses, pk=response_id)
+
+    context = {
+        'response': response
+    }
+
+    return render(request, 'vacancies/vacancies_response_detail.html', context=context)
 
 
 @login_required

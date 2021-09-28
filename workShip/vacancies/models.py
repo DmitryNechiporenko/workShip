@@ -3,6 +3,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.urls import reverse
+from summaries.models import Summary
 
 image_storage = FileSystemStorage(
     # Physical file location ROOT
@@ -40,3 +41,22 @@ class Vacancy(models.Model):
         verbose_name = 'Вакансия'
         verbose_name_plural = 'Вакансии'
         ordering = ['-time_create', 'title']
+
+
+class VacancyResponses(models.Model):
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
+    summary = models.ForeignKey(Summary, on_delete=models.CASCADE)
+    time_create = models.DateTimeField('Дата создания', auto_now_add=True)
+    new = models.BooleanField('Новый отклик', default=True)
+    approved = models.BooleanField('Одобрен', default=False)
+
+    def __str__(self):
+        return self.summary.name
+
+    def get_absolute_url(self):
+        return reverse('vacancies_response_detail', kwargs={'response_id': self.pk})
+
+    class Meta:
+        verbose_name = 'Отклик'
+        verbose_name_plural = 'Отклики'
+        ordering = ['-time_create']

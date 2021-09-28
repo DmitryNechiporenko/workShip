@@ -1,5 +1,4 @@
 import datetime
-
 from django.contrib.auth.models import User, AbstractUser
 from django.core.files.storage import FileSystemStorage
 from django.db import models
@@ -25,7 +24,7 @@ class Profile(models.Model):
     is_company = models.BooleanField(verbose_name='Это компания', default=False)
     company_name = models.CharField(verbose_name='Название компании', max_length=255, null=True, blank=True)
     patronymic = models.CharField(verbose_name='Отчество', max_length=255, null=True, blank=True)
-    photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path, default='defaultuser.png', null=True, blank=True)
+    photo = models.ImageField(verbose_name='Изображение профиля', upload_to=image_directory_path, storage=image_storage, default='defaultuser.png')
     country = models.CharField(verbose_name='Страна', max_length=100, blank=True)
     city = models.CharField(verbose_name='Город', max_length=100, blank=True)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12, null=True)
@@ -35,19 +34,8 @@ class Profile(models.Model):
 class CompanyProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(verbose_name='Название компании', max_length=255)
-    logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, default='defaultuser.png', blank=True, null=True)
+    logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, storage=image_storage, default='defaultuser.png')
     address = models.CharField(verbose_name='Адрес', max_length=255)
     about = models.TextField(verbose_name='О компании')
     contact_patronymic = models.CharField(verbose_name='Отчество', max_length=255)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12)
-
-
-#@receiver(post_save, sender=User)
-#def create_user_profile(sender, instance, created, **kwargs):
-#    if created:
-#        Profile.objects.create(user=instance)
-
-
-#@receiver(post_save, sender=User)
-#def save_user_profile(sender, instance, **kwargs):
-#    instance.profile.save()

@@ -26,9 +26,11 @@
                <img src="{{vacancy.image.url}}" alt="">
              </div>
           </div>
-          <div class="respond-button">
-            <button>Откликнуться</button>
-          </div>
+
+        <button type="button" class="btn btn-primary my-3 mx-1" data-bs-toggle="modal" data-bs-target="#responseModal">
+            Откликнуться
+        </button>
+
 
         </div>
         <div class="slider_index">
@@ -50,5 +52,39 @@
           </div>
         </div>
       </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Выберите резюме</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form method="post">
+        {% csrf_token %}
+          <div class="modal-body">
+            {% for summary in summaries %}
+                  <div class="form-check my-2">
+                    <input type="radio" class="btn-check" name="summary" id="{{ summary.id }}" autocomplete="off" value="{{ summary.id }}">
+                    <label class="btn btn-info text-white" for="{{ summary.id }}">{{ summary.name }}</label>
+                  </div>
+
+              {% empty %}
+                <p>
+                    У вас нет резюме для отправки
+                </p>
+              {% endfor %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            {% if summaries %}
+            <input type="submit" class="btn btn-primary" value="Откликнуться">
+            {% endif %}
+          </div>
+        </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

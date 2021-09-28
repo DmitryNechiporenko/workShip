@@ -1,0 +1,45 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Отклики
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="wrapper">
+            <div class="vacancies__header">
+            <h2>Отклики</h2>
+            </div>
+            <div class="row my-2 mx-1">
+                <h5>{{ vacancy.title }}</h5>
+            </div>
+
+            <div class="row my-6">
+                <div class="col-12 my-6">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Должность в резюме</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for response in responses %}
+                           <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ response.summary.job }}</td>
+                                <td>{{ response.summary.name }}</td>
+                               <td><a href="{{ response.get_absolute_url }}">Посмотреть</a></td>
+                            </tr>
+                      {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+      </div>
+</div>
+{% endblock %}

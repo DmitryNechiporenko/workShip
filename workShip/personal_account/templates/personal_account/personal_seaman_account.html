@@ -52,7 +52,9 @@
                         </div>
                     </div>
                     <div class="col-4 my-4">
+                        {% if profile.photo %}
                         <img src="{{ profile.photo.url }}" class="rounded mx-auto d-block img-fluid" alt="profile photo">
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row my-6">
@@ -73,7 +75,6 @@
                             <tbody>
 
                             {% for summary in summaries %}
-
                                <tr>
                                     <th scope="row">{{ forloop.counter }}</th>
                                     <td><a href="{{ summary.get_absolute_url }}">{{ summary.job }}</a></td>

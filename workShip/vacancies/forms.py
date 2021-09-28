@@ -16,3 +16,7 @@ class AddVacancyForm(forms.ModelForm):
         fields = ('title', 'salary', 'vessel_type', 'date_start', 'landing', 'contract_term', 'image')
 
 
+class VacancyResponseForm(forms.ModelForm):
+    class Meta:
+        model = VacancyResponses
+        fields = ('summary',)
