@@ -32,7 +32,8 @@ def vacancies_detail(request, vacancy_id):
         if response_form.is_valid():
             response = VacancyResponses.objects.create(
                 vacancy=vacancy,
-                summary=response_form.cleaned_data['summary']
+                summary=response_form.cleaned_data['summary'],
+                from_company=False
                 )
 
     company = CompanyProfile.objects.filter(user=vacancy.user).get()
@@ -50,7 +51,7 @@ def vacancies_detail(request, vacancy_id):
 @login_required
 def vacancies_responses(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, pk=vacancy_id, user=request.user)
-    responses = VacancyResponses.objects.filter(vacancy=vacancy)
+    responses = VacancyResponses.objects.filter(vacancy=vacancy, from_company=False)
 
     context = {
         'vacancy': vacancy,

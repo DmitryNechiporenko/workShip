@@ -2,9 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 from main.models import Profile
-
-from .forms import AddSummaryForm
-from .models import Summary
+from vacancies.models import VacancyResponses, Vacancy
+from .forms import *
+from .models import *
 from .utils import DataMixin
 
 
@@ -24,15 +24,51 @@ class summaries_home(DataMixin, ListView):
 
 
 def summaries_detail(request, summary_id):
+
     summary = get_object_or_404(Summary, pk=summary_id)
     profile = Profile.objects.filter(user=summary.user).get()
 
+    if request.method == 'POST':
+        response_form = SummaryResponseForm(request.POST)
+        if response_form.is_valid():
+            response = VacancyResponses.objects.create(
+                vacancy=response_form.cleaned_data['vacancy'],
+                summary=summary
+                )
+
+    vacancies = Vacancy.objects.filter(user=request.user)
+
     context = {
+        'vacancies': vacancies,
         'summary': summary,
         'profile': profile
     }
 
-    return render(request, 'summaries/summaries_detail.html', {'summary': summary})
+    return render(request, 'summaries/summaries_detail.html', context=context)
+
+
+@login_required
+def summaries_responses(request, summary_id):
+    summary = get_object_or_404(Summary, pk=summary_id, user=request.user)
+    responses = VacancyResponses.objects.filter(summary=summary, from_company=True)
+
+    context = {
+        'summary': summary,
+        'responses': responses
+    }
+
+    return render(request, 'summaries/summaries_responses.html', context=context)
+
+
+@login_required
+def summaries_response_detail(request, response_id):
+    response = get_object_or_404(VacancyResponses, pk=response_id)
+
+    context = {
+        'response': response
+    }
+
+    return render(request, 'summaries/summary_response_detail.html', context=context)
 
 
 @login_required

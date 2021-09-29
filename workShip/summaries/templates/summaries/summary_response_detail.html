@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+{% block title %}
+Отклик
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <div class="wrapper">
+            <div class="vacancies__header">
+            <h2>Отклик</h2>
+            </div>
+
+            <div class="row my-6">
+                <div class="col-12 my-6">
+                 <div class="vacancy__detail">
+                    <div class="vacancy__text">
+                        <div><h3>Резюме: </h3><a href="{{ response.summary.get_absolute_url }}">{{ response.summary }}</a></div>
+                        <div><h3>Вакансия: </h3><a href="{{ response.vacancy.get_absolute_url }}">{{ response.vacancy }}</a></div>
+                        <div><h3>Время отклика: </h3> {{ response.time_create }}</div>
+                        <div><h3>Одобрено: </h3> {% if response.approved %} Да {% else %} Нет {% endif %}</div>
+                    </div>
+                </div>
+            </div>
+
+      </div>
+</div>
+{% endblock %}

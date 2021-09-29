@@ -79,7 +79,7 @@
                                     <th scope="row">{{ forloop.counter }}</th>
                                     <td><a href="{{ summary.get_absolute_url }}">{{ summary.job }}</a></td>
                                     <td>От {{ summary.salary_min }} до {{ summary.salary_max }}</td>
-                                    <td>15</td>
+                                    <td><a href="{% url 'summaries_responses' summary.id %}">{{ summary.responses_count }}</a></td>
                                 </tr>
 
                           {% endfor %}

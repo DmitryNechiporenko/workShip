@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render, get_object_or_404
 from main.models import Profile, CompanyProfile
 from vacancies.models import *
@@ -13,7 +13,7 @@ def personal_account_home(request):
     company_profile = CompanyProfile.objects.filter(user=request.user)
 
     if seaman_profile:
-        summaries = Summary.objects.filter(user=request.user)
+        summaries = Summary.objects.filter(user=request.user).annotate(responses_count=Count('vacancyresponses', filter=Q(vacancyresponses__from_company=True)))
 
         context = {
             'profile': seaman_profile.get(),
@@ -21,8 +21,7 @@ def personal_account_home(request):
         }
         return render(request, 'personal_account/personal_seaman_account.html', context=context)
     elif company_profile:
-        vacancies = Vacancy.objects.filter(user=request.user).annotate(Count('vacancyresponses'))
-
+        vacancies = Vacancy.objects.filter(user=request.user).annotate(responses_count=Count('vacancyresponses', filter=Q(vacancyresponses__from_company=False)))
 
         context = {
             'profile': company_profile.get(),

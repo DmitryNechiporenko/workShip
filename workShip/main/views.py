@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
 from vacancies.models import Vacancy
+from summaries.models import Summary
 
 from .forms import *
 from .utils import DataMixin
@@ -13,8 +14,15 @@ from .models import *
 
 
 def index(request):
-    vacancies = Vacancy.objects.all()
-    return render(request, 'main/index.html', {'vacancies': vacancies})
+    vacancies = Vacancy.objects.filter(is_published=True)[:3]
+    summaries = Summary.objects.filter(is_published=True)[:3]
+
+    context = {
+        'vacancies': vacancies,
+        'summaries': summaries
+    }
+
+    return render(request, 'main/index.html', context=context)
 
 
 def register_company(request):

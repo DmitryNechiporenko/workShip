@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-
+from vacancies.models import VacancyResponses
 
 class AddSummaryForm(forms.ModelForm):
     name = forms.CharField(label='Название', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название'}))
@@ -16,3 +16,8 @@ class AddSummaryForm(forms.ModelForm):
         fields = ('name', 'job', 'city', 'salary_min', 'salary_max', 'extra', 'image')
 
 
+
+class SummaryResponseForm(forms.ModelForm):
+    class Meta:
+        model = VacancyResponses
+        fields = ('vacancy',)

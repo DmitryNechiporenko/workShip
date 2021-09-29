@@ -3,7 +3,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from django.urls import reverse
-from summaries.models import Summary
+from summaries.models import *
 
 image_storage = FileSystemStorage(
     # Physical file location ROOT
@@ -49,6 +49,7 @@ class VacancyResponses(models.Model):
     time_create = models.DateTimeField('Дата создания', auto_now_add=True)
     new = models.BooleanField('Новый отклик', default=True)
     approved = models.BooleanField('Одобрен', default=False)
+    from_company = models.BooleanField('Заявка от компании', default=True)
 
     def __str__(self):
         return self.summary.name
