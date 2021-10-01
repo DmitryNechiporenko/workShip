@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
@@ -26,6 +27,7 @@ class vacancies_home(DataMixin, ListView):
 
 def vacancies_detail(request, vacancy_id):
     vacancy = get_object_or_404(Vacancy, pk=vacancy_id)
+    company = CompanyProfile.objects.filter(user=vacancy.user).get()
 
     if request.method == 'POST':
         response_form = VacancyResponseForm(request.POST)
@@ -35,10 +37,18 @@ def vacancies_detail(request, vacancy_id):
                 summary=response_form.cleaned_data['summary'],
                 from_company=False
                 )
+            send_mail(
+                'New response',
+                'You have new response!',
+                'd.nechiporenko@aossrc.ru',
+                ['marakashi42@gmail.com'],
+                fail_silently=False,
+            )
 
-    company = CompanyProfile.objects.filter(user=vacancy.user).get()
-    summaries = Summary.objects.filter(user=request.user)
-
+    if request.user.is_authenticated:
+        summaries = Summary.objects.filter(user=request.user)
+    else:
+        summaries = None
     context = {
         'vacancy': vacancy,
         'company': company,

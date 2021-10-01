@@ -36,7 +36,10 @@ def summaries_detail(request, summary_id):
                 summary=summary
                 )
 
-    vacancies = Vacancy.objects.filter(user=request.user)
+    if request.user.is_authenticated:
+        vacancies = Vacancy.objects.filter(user=request.user)
+    else:
+        vacancies = None
 
     context = {
         'vacancies': vacancies,
