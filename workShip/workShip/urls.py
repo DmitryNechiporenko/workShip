@@ -28,7 +28,8 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('education/', include('education.urls')),
     path('company/', include('company.urls')),
-    path('personalaccount/', include('personal_account.urls'))
+    path('personalaccount/', include('personal_account.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:

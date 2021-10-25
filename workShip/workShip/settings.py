@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'company',
     'education',
     'personal_account',
+    'captcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

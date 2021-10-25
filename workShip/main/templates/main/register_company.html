@@ -103,7 +103,14 @@
                         </div>
                     </div>
 
-
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <label for="{{ user_form.captcha.id_for_label}}">Введите код с картинки</label>
+                            {{ user_form.captcha }}
+                            <br>
+                            {{ user_form.captcha.errors }}
+                        </div>
+                    </div>
 
 
 
