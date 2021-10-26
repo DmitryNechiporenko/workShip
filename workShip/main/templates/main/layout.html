@@ -61,11 +61,11 @@
     <footer class="footer py-3" style="position: absolute; bottom: 0; width: 100%">
       <div class="container">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Резюме</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Английский для моряков</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Для компании</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Консультация по морским документам</a></li>
+          <li class="nav-item"><a href="{% url 'vacancies_home' %}" class="nav-link px-2 text-muted">Вакансии</a></li>
+          <li class="nav-item"><a href="{% url 'summaries_home' %}" class="nav-link px-2 text-muted">Резюме</a></li>
+          <li class="nav-item"><a href="{% url 'in_develop' %}" class="nav-link px-2 text-muted">Английский для моряков</a></li>
+          <li class="nav-item"><a href="{% url 'company_home' %}" class="nav-link px-2 text-muted">Для компании</a></li>
+          <li class="nav-item"><a href="{% url 'seaman_home' %}" class="nav-link px-2 text-muted">Консультация по морским документам</a></li>
         </ul>
         <p class="text-center text-muted">© 2021 WorkShip</p>
       </div>

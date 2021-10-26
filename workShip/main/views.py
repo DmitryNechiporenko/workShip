@@ -1,6 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, logout_then_login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -184,5 +184,5 @@ class LoginUser(DataMixin, LoginView):
 
 
 def logout_user(request):
-    logout(request)
+    logout_then_login(request)
     return redirect('login')
