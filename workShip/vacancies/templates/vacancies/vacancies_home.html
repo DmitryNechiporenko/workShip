@@ -1,4 +1,5 @@
 {% extends 'main/layout.html' %}
+{% load static %}
 {% block title %}
 Вакансии
 {% endblock %}
@@ -49,22 +50,22 @@
           {% endif %}
         </div>
         <div class="slider_index">
-
           <div class="slider_index__container">
             <div class="card bg-dark text-white">
-                <img src="https://via.placeholder.com/300x300" class="card-img" alt="...">
+                <img src="{%  static 'main/img/ship1.jpg' %}" class="card-img img-fluid img-thumbnail" alt="...">
                 <div class="card-img-overlay">
-                <p class="card-text">Только у нас вы сможете найти работу и при этом получить
+                <p class="card-text" style="text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">Только у нас вы сможете найти работу и при этом получить
                 дополнительные сертификаты для более крупных организаций.
                 Изучение Английского языка уже доступно на нашей платформе</p>
                 </div>
             </div>
             <div class="card bg-dark text-white">
-                <img src="https://via.placeholder.com/300x300" class="card-img" alt="...">
+                <img src="{%  static 'main/img/ship2.jpg' %}" class="card-img img-fluid img-thumbnail" alt="...">
                 <div class="card-img-overlay">
-                <h5 class="card-title">С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</h5>
+                <h5 class="card-title"  style="text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;">С НАШЕЙ РАБОЧЕЙ ВИЗОЙ, ВЫ СМОЖЕТЕ ОСВОИТЬ ВЕСЬ МИР</h5>
                 </div>
             </div>
+
           </div>
         </div>
       </div>

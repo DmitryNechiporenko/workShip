@@ -38,8 +38,7 @@ footer {
   content: "";
   background: url(../../img/map1942.jpg);
   background-repeat: repeat;
-  -webkit-background-size: auto auto;
-          background-size: auto;
+  background-size: auto;
   opacity: 0.07;
   top: 0;
   left: 0;
@@ -55,11 +54,9 @@ footer {
   width: 100%;
   height: auto;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
@@ -82,7 +79,6 @@ footer {
 .top_menu ul li a {
   font-size: 20px;
   -webkit-transition: color 0.2s;
-  -o-transition: color 0.2s;
   transition: color 0.2s;
   padding: 25px;
   display: inline-block;
@@ -128,7 +124,6 @@ footer {
 .top_menu .top_title {
   font-size: 30px;
   -webkit-transition: color 0.4s;
-  -o-transition: color 0.4s;
   transition: color 0.4s;
   padding: 19px;
 }
@@ -152,20 +147,17 @@ footer {
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 
 .login-form {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   margin: 20px auto;
   width: 350px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
   justify-items: space-around;
@@ -193,16 +185,13 @@ footer {
 
 .vacancies__container {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
@@ -215,36 +204,30 @@ footer {
   height: 220px;
   margin: 20px 0;
   -webkit-transition: 0.2s;
-  -o-transition: 0.2s;
   transition: 0.2s;
 }
 
 .vacancies__container a:hover {
   -webkit-transform: scale(1.03);
-      -ms-transform: scale(1.03);
           transform: scale(1.03);
 }
 
 .vacancies__container .vacancy {
   position: relative;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
   height: 100%;
   border: 2px solid #707070;
-  -webkit-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
   padding: 20px;
 }
 
@@ -261,7 +244,6 @@ footer {
   right: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 120px;
   height: 120px;
@@ -273,11 +255,9 @@ footer {
 
 .vacancies__pages ul {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   list-style: none;
@@ -295,8 +275,7 @@ footer {
   line-height: 40px;
   color: #000;
   font-weight: bold;
-  -webkit-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
 }
 
 .vacancies__pages ul li a {
@@ -304,7 +283,6 @@ footer {
   width: 100%;
   height: 100%;
   -webkit-transition: color 0.2s;
-  -o-transition: color 0.2s;
   transition: color 0.2s;
   background-color: #ccc;
   text-decoration: none;
@@ -312,8 +290,7 @@ footer {
   line-height: 40px;
   color: #000;
   font-weight: bold;
-  -webkit-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
 }
 
 .vacancies__pages ul li a:hover {
@@ -322,11 +299,9 @@ footer {
 
 .vacancies .vacancy__detail {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
@@ -357,7 +332,6 @@ footer {
 .register-choose a {
   text-decoration: none;
   -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -385,13 +359,11 @@ footer {
   background: #fff;
   margin: 10px auto;
   padding: 20px;
-  -webkit-border-radius: 4px;
-          border-radius: 4px;
+  border-radius: 4px;
 }
 
 .registration__inner {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -416,7 +388,6 @@ footer {
   bottom: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
 }
 
@@ -434,15 +405,13 @@ footer {
   display: block;
   width: 100%;
   padding: 7px;
-  -webkit-border-radius: 5px;
-          border-radius: 5px;
+  border-radius: 5px;
   border-width: 1px;
   margin-top: 5px;
 }
 
 .documents__container {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
@@ -483,7 +452,6 @@ footer {
   text-decoration: none;
   margin: 5px 10px;
   -webkit-transition: 0.2s;
-  -o-transition: 0.2s;
   transition: 0.2s;
 }
 
@@ -505,7 +473,6 @@ footer {
   border: none;
   cursor: pointer;
   -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -518,20 +485,17 @@ footer {
   width: 100%;
   padding: 10px 100px;
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
 .slider_index__container {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .slider_index__element {

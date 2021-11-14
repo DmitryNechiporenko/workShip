@@ -93,3 +93,23 @@ def summary_add(request):
         'summary_form': summary_form
     }
     return render(request, 'summaries/summary_add.html', context=context)
+
+
+@login_required
+def edit_summary(request, summary_id):
+    summary = get_object_or_404(Summary, pk=summary_id, user=request.user)
+
+    if request.method == 'POST':
+        summary_form = AddSummaryForm(request.POST, request.FILES, instance=summary)
+        if summary_form.is_valid():
+            summary_form.save()
+
+            return redirect('personal_account_home')
+    else:
+        summary_form = AddSummaryForm(instance=summary)
+
+    context = {
+        'summary_form': summary_form
+    }
+
+    return render(request, 'summaries/summary_edit.html', context=context)

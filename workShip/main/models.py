@@ -37,5 +37,5 @@ class CompanyProfile(models.Model):
     logo = models.ImageField(verbose_name='Логотип компании', upload_to=image_directory_path, storage=image_storage, default='defaultuser.png')
     address = models.CharField(verbose_name='Адрес', max_length=255)
     about = models.TextField(verbose_name='О компании')
-    contact_patronymic = models.CharField(verbose_name='Отчество', max_length=255)
+    contact_patronymic = models.CharField(verbose_name='Отчество', max_length=255, blank=True)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=12)

@@ -48,7 +48,7 @@ class RegisterCompanyProfileForm(forms.ModelForm):
     logo = forms.ImageField(label='Логотип', widget=forms.FileInput())
     address = forms.CharField(label='Адрес', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Адрес'}))
     about = forms.CharField(label='О компании', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
-    contact_patronymic = forms.CharField(label='Отчество (если имеется)', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
+    contact_patronymic = forms.CharField(label='Отчество (если имеется)', required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}))
     phone_number = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер телефона'}))
 
     class Meta:
