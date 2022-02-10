@@ -7,25 +7,35 @@
 <div class="container">
       <div class="wrapper">
         <div class="vacancies">
-          <div class="vacancies__header">
+          <div class="vacancies__header mb-5">
             <h2>Обучение</h2>
           </div>
-            <div class="vacancies__container">
-            {% if practices %}
-              {% for practice in practices %}
-             <a href="{% url 'practice_detail' %}?id={{ practice.id }}">
-                <div class="vacancy">
-                  <div class="vacancy__title">{{ practice.title }}</div>
-                  <div class="vacancy__salary">{{ practice.salary }}</div>
-                  <div class="vacancy__date">{{ practice.date_start }} - {{ practice.date_end }}</div>
-                  <div class="vacancy__logo"><img src="{{practice.image.url}}" alt=""></div>
-                </div>
-             </a>
+
+            {% if studies %}
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              {% for study in studies %}
+                  <div class="col">
+                      <div class="card h-100">
+                          <div class="card-body h-100">
+                            <h5 class="card-title">{{ study.title }}</h5>
+                            <p class="card-text">{{ study.task }}</p>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b> Первичное обучение:</b> {{ study.first_price }} RUB.</li>
+                              <li class="list-group-item"><b>Повторное обучение:</b> {{ study.secord_price }} RUB.</li>
+
+                          </ul>
+                          <div class="card-body text-center">
+                            <a href="{% url 'study_detail' %}?id={{ study.id }}" class="card-link btn btn-primary w-100 h-100">Подробнее</a>
+                          </div>
+                      </div>
+                  </div>
               {% endfor %}
+             </div>
             {% else %}
               <p>Практик не обнаружено</p>
             {% endif %}
-          </div>
+
             {% if practices %}
             <nav class="vacancies__pages">
                 <ul>

@@ -79,6 +79,7 @@
                                     <th scope="col">Должность</th>
                                     <th scope="col">Зарплата</th>
                                     <th scope="col">Отклики</th>
+                                    <th scope="col" class="text-center">Действия</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,6 +90,10 @@
                                     <td><a href="{{ vacancy.get_absolute_url }}">{{ vacancy.title }}</a></td>
                                     <td>{{ vacancy.salary }}</td>
                                     <td><a href="{% url 'vacancies_responses' vacancy.id %}">{{ vacancy.responses_count }}</a></td>
+                                   <td class="text-center">
+                                       <a href="#" alt="Удалить" class="link-danger"  data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-objectid="{{vacancy.id}}"><i class="fas fa-trash-alt"></i></a>
+                                       <a href="{% url 'vacancies_edit' vacancy.id %}" alt="Изменить" class="link-primary"><i class="fas fa-edit"></i></a>
+                                   </td>
                                 </tr>
                           {% endfor %}
 
@@ -99,4 +104,41 @@
 
       </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Подтверждение</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Вы действительно хотите удалить вакансию?
+      </div>
+      <div class="modal-footer">
+         <a href="#" alt="Удалить" class="btn btn-primary" id="modal-link">Удалить</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    var deleteModal = document.getElementById('deleteModal')
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  var button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  var objectid = button.getAttribute('data-bs-objectid')
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+
+  var modalLink = document.getElementById('modal-link')
+  modalLink.href="/vacancies/delete/" + objectid + "/"
+})
+</script>
 {% endblock %}

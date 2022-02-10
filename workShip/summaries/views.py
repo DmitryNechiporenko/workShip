@@ -9,7 +9,7 @@ from .utils import DataMixin
 
 
 class summaries_home(DataMixin, ListView):
-    paginate_by = 2
+    paginate_by = 10
     model = Summary
     template_name = "summaries/summaries_home.html"
     context_object_name = 'summaries'
@@ -113,3 +113,11 @@ def edit_summary(request, summary_id):
     }
 
     return render(request, 'summaries/summary_edit.html', context=context)
+
+
+@login_required
+def delete_summary(request, summary_id):
+    summary = get_object_or_404(Summary, pk=summary_id, user=request.user)
+    summary.delete()
+
+    return redirect('personal_account_home')

@@ -11,7 +11,7 @@ from .forms import *
 
 
 class vacancies_home(DataMixin, ListView):
-    paginate_by = 2
+    paginate_by = 10
     model = Vacancy
     template_name = "vacancies/vacancies_home.html"
     context_object_name = 'vacancies'
@@ -101,3 +101,31 @@ def vacancies_add(request):
         'vacancies_form': vacancies_form
     }
     return render(request, 'vacancies/vacancies_add.html', context=context)
+
+
+@login_required
+def vacancies_delete(request, vacancy_id):
+    vacancy = get_object_or_404(Vacancy, pk=vacancy_id, user=request.user)
+    vacancy.delete()
+
+    return redirect('personal_account_home')
+
+
+@login_required
+def vacancies_edit(request, vacancy_id):
+    vacancy = get_object_or_404(Vacancy, pk=vacancy_id, user=request.user)
+
+    if request.method == 'POST':
+        vacancies_form = AddVacancyForm(request.POST, request.FILES, instance=vacancy)
+        if vacancies_form.is_valid():
+            vacancies_form.save()
+
+            return redirect('personal_account_home')
+    else:
+        vacancies_form = AddVacancyForm(instance=vacancy)
+
+    context = {
+        'vacancies_form': vacancies_form
+    }
+
+    return render(request, 'vacancies/vacancies_edit.html', context=context)
